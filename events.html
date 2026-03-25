@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Wasabi House — event calendar and ticket request." />
+    <title>Wasabi House — Events</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#calendarGrid">Skip to calendar</a>
+
+    <header class="site-header">
+      <div class="container header-inner header-brand-inner">
+        <div class="brand" aria-label="Wasabi House">
+          <div class="brand-mark" aria-hidden="true">
+            <img class="brand-logo" src="./photos/logo/IMG_7840_VSCO copy.png" alt="" width="42" height="42" />
+          </div>
+          <div class="brand-text">
+            <div class="brand-name">Wasabi House</div>
+            <div class="brand-sub">
+              Wasabi House is a hidden sanctuary where music, art, and raw expression exist away from the surface.
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="menu-bar">
+      <div class="container menu-inner">
+        <nav class="nav" aria-label="Primary">
+          <a href="./events.html">Events</a>
+          <a href="./tickets.html">Tickets</a>
+          <a href="./music.html">Music</a>
+          <a href="./about.html">About</a>
+        </nav>
+
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+          Menu
+        </button>
+      </div>
+
+      <div class="nav-drawer" id="navMenu" hidden>
+        <div class="container nav-drawer-inner">
+          <a href="./events.html">Events</a>
+          <a href="./tickets.html">Tickets</a>
+          <a href="./music.html">Music</a>
+          <a href="./about.html">About</a>
+        </div>
+      </div>
+    </div>
+
+    <main id="main">
+      <section class="section" id="events">
+        <div class="container section-inner">
+          <div class="section-head">
+            <div>
+              <h2>Event calendar</h2>
+              <p class="muted">Tap a day with events to see line-up, doors, and ticket prices.</p>
+            </div>
+            <div class="calendar-toolbar" aria-label="Calendar controls">
+              <button class="icon-btn" type="button" id="prevMonth" aria-label="Previous month">←</button>
+              <div class="calendar-title" id="calendarTitle" aria-live="polite"></div>
+              <button class="icon-btn" type="button" id="nextMonth" aria-label="Next month">→</button>
+            </div>
+          </div>
+
+          <div class="calendar" role="group" aria-label="Monthly calendar">
+            <div class="calendar-weekdays" aria-hidden="true">
+              <div>Sun</div>
+              <div>Mon</div>
+              <div>Tue</div>
+              <div>Wed</div>
+              <div>Thu</div>
+              <div>Fri</div>
+              <div>Sat</div>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+          </div>
+
+          <div class="calendar-legend" aria-label="Legend">
+            <span class="legend-item"><span class="dot dot-hot"></span> Event day</span>
+            <span class="legend-item"><span class="dot dot-soon"></span> Nearby</span>
+            <span class="legend-item"><span class="dot dot-full"></span> Limited</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay" hidden></div>
+    <div class="modal" id="eventModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+      <div class="modal-header">
+        <div>
+          <div class="modal-kicker">Wasabi House</div>
+          <h3 class="modal-title" id="modalTitle">Event</h3>
+          <div class="modal-subtitle" id="modalSubtitle"></div>
+        </div>
+        <button class="icon-btn modal-close" type="button" id="modalClose" aria-label="Close">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-cols">
+          <div class="modal-left">
+            <div class="modal-block">
+              <div class="modal-label">Line-up / vibe</div>
+              <div class="modal-description" id="modalDescription"></div>
+            </div>
+
+            <div class="modal-block modal-block-2">
+              <div class="pill-row">
+                <span class="pill" id="modalDoors"></span>
+                <span class="pill" id="modalLocation"></span>
+              </div>
+              <div class="tags" id="modalTags"></div>
+            </div>
+
+            <div class="modal-block" id="modalChooserBlock">
+              <div class="modal-label">If multiple events fall on this day:</div>
+              <div class="event-chooser" id="eventChooser"></div>
+            </div>
+          </div>
+
+          <div class="modal-right">
+            <div class="modal-block">
+              <div class="modal-label">Choose tickets</div>
+              <div class="tier-list" id="tierList"></div>
+
+              <div class="qty-row" aria-label="Quantity selector">
+                <label class="qty-label" for="ticketQty">Quantity</label>
+                <div class="qty-control">
+                  <button class="qty-btn" type="button" id="qtyMinus" aria-label="Decrease quantity">−</button>
+                  <input class="qty-input" id="ticketQty" type="number" min="1" step="1" value="1" inputmode="numeric" />
+                  <button class="qty-btn" type="button" id="qtyPlus" aria-label="Increase quantity">+</button>
+                </div>
+              </div>
+
+              <div class="total-row">
+                <span>Total</span>
+                <span class="total-value" id="totalValue">$—</span>
+              </div>
+
+              <div class="modal-actions">
+                <button class="btn btn-primary w100" type="button" id="getTicketsBtn">Get tickets (email request)</button>
+                <button class="btn btn-ghost w100" type="button" id="copyOrderBtn">Copy order summary</button>
+              </div>
+
+              <p class="fineprint modal-fineprint">
+                Tickets are limited for this event. Prices may change. (Edit events and prices in `events.js`.)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-left">
+          <div class="brand-mini">
+            <span class="brand-mark" aria-hidden="true">
+              <img class="brand-logo" src="./photos/logo/IMG_7840_VSCO copy.png" alt="" width="26" height="26" />
+            </span>
+            <span>Wasabi House</span>
+          </div>
+          <div class="muted">Underground nights. Loud flavors.</div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-links">
+            <a href="./events.html">Events</a>
+            <a href="./tickets.html">Tickets</a>
+            <a href="./music.html">Music</a>
+          </div>
+          <div class="muted small">Made with HTML + CSS + JS.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./nav.js"></script>
+    <script src="./data.js"></script>
+    <script src="./events.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Wasabi House past event poster details." />
+    <title>Wasabi House — Poster</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner header-brand-inner">
+        <div class="brand" aria-label="Wasabi House">
+          <div class="brand-name">Wasabi House</div>
+          <div class="brand-sub">
+            Wasabi House is a hidden sanctuary where music, art, and raw expression exist away from the surface.
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="menu-bar">
+      <div class="container menu-inner">
+        <nav class="nav" aria-label="Primary">
+          <a href="./events.html">Events</a>
+          <a href="./tickets.html">Tickets</a>
+          <a href="./music.html">Music</a>
+          <a href="./about.html">About</a>
+        </nav>
+
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+          Menu
+        </button>
+      </div>
+
+      <div class="nav-drawer" id="navMenu" hidden>
+        <div class="container nav-drawer-inner">
+          <a href="./events.html">Events</a>
+          <a href="./tickets.html">Tickets</a>
+          <a href="./music.html">Music</a>
+          <a href="./about.html">About</a>
+        </div>
+      </div>
+    </div>
+
+    <main id="main">
+      <section class="section poster-section">
+        <div class="container section-inner">
+          <div class="section-head">
+            <div>
+              <h2>Past event poster</h2>
+              <p class="muted">All details are shown on the poster.</p>
+            </div>
+          </div>
+
+          <div class="poster-frame">
+            <img id="posterImg" alt="Past event poster" />
+          </div>
+
+          <div class="hero-actions" style="margin-top: 18px; justify-content: center;">
+            <a class="btn btn-ghost" href="./home.html">Back to home</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-left">
+          <div class="brand-mini">
+            <span>Wasabi House</span>
+          </div>
+          <div class="muted">Underground nights. Loud flavors.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./nav.js"></script>
+    <script src="./poster.js"></script>
+  </body>
+</html>
+
